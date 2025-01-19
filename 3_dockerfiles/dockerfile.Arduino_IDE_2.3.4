@@ -1,0 +1,44 @@
+# install 手順
+
+## コンテナ内 setup
+Image：Ubuntu24.04
+
+https://www.arduino.cc/en/software
+より最新版の
+Linux AppImage 64 bits (X86-64) 
+のダウンロードURL取得
+wget URL
+でダウンロード
+
+apt install -y python3 python3-pip python3-venv
+cd /usr/bin
+ln -s python3 python
+cd /root/
+python -m venv .venv
+source .vevn/bin/activate
+pip install serial
+
+
+## コンテナの外
+
+1_launcher/start_arduino
+
+```bash
+TAG=Arduino_IDE_2.3.4${x86} CONTAINER_NAME=arduino COMPOSE_PROJECT_NAME=arduino_microros ROS_LAUNCH=launch_arduino.sh LARGS=front HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose -f $ACSL_ROS2_DIR/4_docker/docker-compose.yml up common -d
+```
+
+## コンテナ内　Arduino IDE setup
+https://qiita.com/ousagi_sama/items/b4eb3d9c6b337cbe1b05
+の１，２を実施
+
+ただし、２はjazzy版をインストール
+
+# How to use
+
+1_launcher/start_arduino
+でGUIウィンドウが起動
+
+1_launcher/Arduino:/root/Arduino
+になっているのでIDEが開いてから
+
+/root/Arduino/ 内の焼きこみたいファイルを指定して焼きこむ
