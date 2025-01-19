@@ -1,0 +1,2 @@
+#! /usr/bin/bash
+TAG=Arduino_IDE_2.3.4${x86} CONTAINER_NAME=arduino COMPOSE_PROJECT_NAME=arduino_microros ROS_LAUNCH=launch_arduino.sh LARGS= HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose -f $ACSL_ROS2_DIR/4_docker/docker-compose.yml up common -d
