@@ -1,4 +1,6 @@
-# install 手順
+# Arduino IDE on docker
+
+## install 手順
 
 ## コンテナ内 setup
 Image：Ubuntu24.04
@@ -18,8 +20,33 @@ python -m venv .venv
 source .vevn/bin/activate
 pip install serial
 
+### コンテナの外
+https://qiita.com/Ronstadt/items/6a473a1522617fca69b3
 
-## コンテナの外
+```powershell
+winget install --interactive --exact dorssel.usbipd-win
+```
+
+***USBをさした後で、***
+
+powershell admin
+```bash
+# check bus id
+usbipd wsl list 
+# Share USB(bus id) to WSL
+usbipd wsl attach --busid 2-1
+```
+
+どっちがうまくいく？
+```bash
+# Not Shared => Shared
+usbipd bind --busid 2-1
+# attach USB to wsl
+usbipd attach --busid 2-1 --wsl --auto-attach
+```
+attachはUSB指すたびにやる必要がある
+
+## 実行手順
 
 1_launcher/start_arduino
 

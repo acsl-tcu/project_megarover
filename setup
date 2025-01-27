@@ -1,0 +1,5 @@
+#! /bin/bash
+
+docker pull microros/micro-ros-agent:jazzy
+dpull image_megarover$x86
+dpull t265$x86
