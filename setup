@@ -3,10 +3,10 @@
 source $ACSL_ROS2_DIR/bashrc
 echo ${PROJECT}${TARGET}${x86}
 echo ${ROS_DOMAIN_ID}
-
+ROS_DISTRO=humble
 if [ "$1" == "full" ]; then
-  dpull humble$x86
-  dtag humble$x86 image_${PROJECT}${TARGET}${x86}
+  dpull $ROS_DISTRO$x86
+  dtag $ROS_DISTRO$x86 image_${PROJECT}${TARGET}${x86}
 
   dbuild image_megarover slam_toolbox slam_toolbox
   dbuild image_megarover rplidar rplidar
