@@ -1,5 +1,18 @@
 #! /bin/bash
 
-docker pull microros/micro-ros-agent:jazzy
-dpull image_megarover$x86
-dpull t265$x86
+source $ACSL_ROS2_DIR/bashrc
+echo ${PROJECT}${TARGET}${x86}
+echo ${ROS_DOMAIN_ID}
+
+if [ "$1" == "full" ]; then
+  dpull humble$x86
+  dtag humble$x86 image_${PROJECT}${TARGET}${x86}
+
+  dbuild image_megarover slam_toolbox slam_toolbox
+  dbuild image_megarover rplidar rplidar
+  dbuild image_megarover microros microros
+  cd ~/.ssh/
+  cat id_*.pub >>authorized_keys
+fi
+
+build_project megarover3_bringup megarover_description vs_rover_options_description
